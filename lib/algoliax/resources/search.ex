@@ -1,6 +1,6 @@
 defmodule Algoliax.Resources.Search do
   @moduledoc false
-  import Algoliax.Utils, only: [index_name: 2, camelize: 1]
+  import Algoliax.Utils, only: [index_name: 2]
 
   alias Algoliax.Requests
 
@@ -11,7 +11,7 @@ defmodule Algoliax.Resources.Search do
       %{
         query: query
       }
-      |> Map.merge(camelize(params))
+      |> Map.merge(params)
 
     Requests.search(index_name, body)
   end
@@ -27,7 +27,7 @@ defmodule Algoliax.Resources.Search do
         _ ->
           %{facetQuery: facet_query}
       end
-      |> Map.merge(camelize(params))
+      |> Map.merge(params)
 
     Requests.search_facet(index_name, facet_name, body)
   end
